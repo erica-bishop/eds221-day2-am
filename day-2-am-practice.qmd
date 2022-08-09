@@ -9,6 +9,11 @@ execute:
 
 Set global options in yaml (above) with execute: 
 
+```{r}
+library(tidyverse)
+```
+
+
 ##Vectors
 
 ```{r}
@@ -82,8 +87,191 @@ dog_food["khora"]
 
 ```
 
+#create more vectors
+
+```{r}
+
+cars <- c("blue", "orange", "white")
+cars[1]
+
+
+i <- seq(1:2)
+
+#can also use other stored objects to call positions, stored as value or sequence
+cars[i]
+
+
+```
+
+```{r}
+#assign a new value based on position, overwrite existing value
+
+cars[3] <- "yellow"
+cars
+```
+
+
+##Matrices
+
+one way to make a matrix is by creating a vector then wrapping by rows or columns
+
+example:
+```{r}
+fish_size <- matrix(c(12, 14,18, 20), ncol = 2, nrow = 2, byrow = FALSE)
+
+#check class
+
+class(fish_size)
+
+typeof(fish_size)
+
+#index by position - order is row, column
+
+fish_size[1,1]
+fish_size[2,1]
+
+#What happens if we try to create a matrix with different types of data?
+
+fish_type <- matrix(c(12, "trout", 18, 13L), ncol = 2, nrow = 2, byrow = FALSE)
+
+#now check the class
+
+class(fish_type)
+
+typeof(fish_type)
+
+#what happens when you include comma but don't indicate row or column
+#for example:
+
+fish_size[2,]
+
+#the blank indicates to keep everything in the row (so both columns for row 2 are returned)
+
+fish_size[,1]
+
+```
 
 
 
+##Lists
+
+Reminder: a list combines vectors that can be of different length and type
+
+```{r}
+#The list below contains character/string, numeric vectors, string vectors, and an integer
+
+urchins <- list("blue", c(1, 2, 3), c("cat", "dog"), 5L)
+
+#when calling urchin, the double square brackets show which item in order of the list it is
+
+#can use the double brackets to call elements, caution that single brackets will return element as a list
+
+urchins[3]
+
+#which looks the same but is different than calling just the vector:
+
+urchins[[3]]
+
+class(urchins[3])
+#returns list
+
+class(urchins[[3]])
+#returns character
+
+```
+
+#Now make a named list
+List elements can be named just like vector elements
+
+```{r}
+tacos <- list(topping = c("onion", "cilantro", "guacamole"),
+              filling = c("beans", "meat", "veggies"),
+              price = c(6.75, 8.25, 9.50))
+
+#now when looking at the list it shows name of vecotr instead of [[]]
+#side note: = is used within functions, while assignment operator is used as top level object storing
+tacos
+```
+To index list elements by name:
+
+```{r}
+tacos$filling
+
+tacos$filling[2]
+
+```
+
+
+##T Test example
+
+```{r}
+#null hypothesis is that they are drawn from populations with same mean
+
+a <- c(1,2,3)
+b <- c(4,5,6)
+
+ex_ttest <- t.test(a,b)
+
+ex_ttest
+
+class(ex_ttest)
+
+#ttest is a special kind of list, so 
+```
+
+In r markdown, can call elements into the body of the text which helps making report updates very easy.
+
+For example, the second value of tacos is `r tacos$filling[2]`
+
+in r use backticks, in quarto use backticks with `r `
+
+##Data Frames
+
+For example, lets combine tacos into a data frame
+
+```{r}
+
+#One way to create data frame is to create separate vectors then combine
+
+topping <- c("onions", "cilantro", "guacamole")
+filling <- c("beans", "meat", "veggies")
+price <- c(6.75, 8.25, 9.50)
+
+#now use data frame function and give it a series of vectors of equal length
+
+df_tacos <- data.frame(topping, filling, price)
+
+df_tacos
+
+```
+
+```{r}
+
+df_tacos_2 <- data.frame(topping = c("sour cream", "salsa", "cheese"),
+                         filling = c("chicken", "cheese", "cabbage"),
+                         price = c(12.50, 13.75, 15.00))
+
+#can also create a tribble (need to attach tidyverse)
+# tilde specifies headings, write out data in same order/ structure you expect to see it
+
+df_ex_3 <- tribble(
+  ~topping, ~filling, ~price,
+  "avocado", "steak", 13.25,
+  "radish", "fish", 10.40,
+  "salsa", "veggies", 9.75)
+
+df_ex_3
+
+#calling a tibble shows more info than a regular data frame (a tibble is created with the tribble function)
+
+```
+
+```{r}
+df_ex_3$price
+
+#or specify the specific element you want
+
+df_ex_3$price[3]
+```
 
 
