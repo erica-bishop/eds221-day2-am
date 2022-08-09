@@ -8,3 +8,82 @@ execute:
 ---
 
 Set global options in yaml (above) with execute: 
+
+##Vectors
+
+```{r}
+
+#Create vector
+dogs <- c("teddy", "khora", "waffle", "banjo", "tallie")
+
+#check class
+class(dogs)
+
+```
+
+```{r}
+
+#create new vector with different classes
+cats <- c("creamsicle wolf", 14.2, 3L)
+
+#class should be character now, when you call cats you will see quotes around values
+class(cats)
+
+```
+
+```{r}
+
+years <- c(20, 40, 16, 2)
+
+class(years)
+typeof(years)
+
+#typeof shows more detail on data type
+
+```
+
+Ask more about the types of data - return t/f
+
+```{r}
+#do a conditional check with is. (is. series asks questions, is this THIS)
+#as. gives a command, "make this THIS"
+
+#check if years is numeric in a way that returns true or false
+
+is.numeric(years)
+
+as.numeric(years)
+
+is.character(years)
+
+as.numeric(cats)
+#notice that as.numeric with cats creates a warning - "NA introduced by coercion"
+
+
+```
+
+```{r}
+#create another vector with attributes
+
+dog_food <- c(teddy = "purina", khora = "alpo", waffle = "fancy feast")
+
+#call back vector to see that it now has a name for each element
+
+dog_food
+
+```
+
+```{r}
+dog_food[2]
+
+#or call element by name
+
+dog_food["khora"]
+
+```
+
+
+
+
+
+
