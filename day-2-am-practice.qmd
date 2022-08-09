@@ -1,0 +1,10 @@
+---
+title: "Day 2 computational practice"
+format: html
+editor: visual
+execute: 
+  warning: false
+  message: false
+---
+
+Set global options in yaml (above) with execute: 
